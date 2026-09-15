@@ -35,7 +35,7 @@ exports.updateOwnProfile = async (req, res, next) => {
 
 exports.getMyEvents = async (req, res, next) => {
   try {
-    const events = await Event.find({ participants: req.user.userId, status: "UPCOMING" })
+    const events = await Event.find({ participants: req.user.userId })
       .populate("participants", "name avatar role")
       .populate("createdBy", "name");
     return successResponse(res, 200, "Your upcoming events retrieved", events);
